@@ -54,7 +54,7 @@ foreach ($client->parseEvents() as $event) {
                         'messages' => array(
                             array(
                                 'type' => 'text',
-                                'text' => $message['text']//ncmb_get_user($message['text'])
+                                'text' => $result_user //$message['text']
                             )
                         )
                     ));
