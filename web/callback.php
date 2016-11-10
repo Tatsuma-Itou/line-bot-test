@@ -61,7 +61,7 @@ foreach ($client->parseEvents() as $event) {
     }
 };
 
-    private function ncmb_get_user($line_id) {
+    /*private function ncmb_get_user($line_id) {
 
         $result_user = null;
 
@@ -72,7 +72,7 @@ foreach ($client->parseEvents() as $event) {
             )))
         );
 
-        $search_results_string = $ncmb_client->get('/HelpLINE?' . $query_string); // usersには/classes付けない
+        $search_results_string = $ncmb_client->get('/users?' . $query_string); // usersには/classes付けない
 
         $search_results = json_decode($search_results_string, true);
 
@@ -85,4 +85,4 @@ foreach ($client->parseEvents() as $event) {
             $result_user =  $selected_user.'さん';
         }
         return $result_user ;
-    }
+    }*/
