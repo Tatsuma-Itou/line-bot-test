@@ -41,7 +41,12 @@ foreach ($client->parseEvents() as $event) {
                 case 'location':
                     $client->replyMessage(array(
                         'replyToken' => $event['replyToken'],
-                        'messages' => "あなたの居場所はそこですね"
+                        'messages' => array(
+                            array(
+                                'type' => 'text',
+                                'text' => "あなたの居場所はそこですね"
+                                )
+                            )
                         ));
                     break;
                     default:
