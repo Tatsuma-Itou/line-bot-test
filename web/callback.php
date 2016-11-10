@@ -61,9 +61,9 @@ foreach ($client->parseEvents() as $event) {
     }
 };
 
-    /*private function ncmb_get_user($line_id) {
+    private function ncmb_get_user($line_id) {
 
-        $result_user = null;
+        /*$result_user = null;
 
         $ncmb_client = new NCMBClient("f32e333ff28afabef1915e457c432bc7271180a4d5f0645f3775643543f32d40","097090d9da0e0e3434948709a8732a594ca5567549bc4870af8d18ba8dfe62f9");
         $query_string = http_build_query(
@@ -83,6 +83,6 @@ foreach ($client->parseEvents() as $event) {
             $user_info = $search_results['results'][0];
             $selected_user = $user_info['userNameKanji'];
             $result_user =  $selected_user.'さん';
-        }
+        }*/
         return $result_user ;
-    }*/
+    }
