@@ -17,6 +17,7 @@
  */
 
 require_once('./LINEBotTiny.php');
+include_once('NCMB/ncmb-client.php');
 
 $channelAccessToken = 'KR5/LV6k4zm8mZpaw6U1fM8Isx6U+MzkgIH0EuMdYvlr8bAD2UK8uQ0aS5Q/Kn6OTgw8vxRXsYN4D9Hu0eT61tbDJdt/T7wGwY5VVLajSijR6F9X5yHT1GmDqc5HpNp57Bof/IDvzSDKj1WUmf5BCAdB04t89/1O/w1cDnyilFU=';
 $channelSecret = '04106210be1640325f6f8b23e03a4506';
@@ -33,7 +34,7 @@ foreach ($client->parseEvents() as $event) {
                         'messages' => array(
                             array(
                                 'type' => 'text',
-                                'text' => $message['text']
+                                'text' => ncmb_get_user($message['text'])
                             )
                         )
                     ));
@@ -59,3 +60,29 @@ foreach ($client->parseEvents() as $event) {
             break;
     }
 };
+
+    private function ncmb_get_user($line_id) {
+
+        $result_user = null;
+
+        $ncmb_client = new NCMBClient("f32e333ff28afabef1915e457c432bc7271180a4d5f0645f3775643543f32d40","097090d9da0e0e3434948709a8732a594ca5567549bc4870af8d18ba8dfe62f9");
+        $query_string = http_build_query(
+            array('where' => json_encode(array(
+                'lineID' => $line_id ,
+            )))
+        );
+
+        $search_results_string = $ncmb_client->get('/HelpLINE?' . $query_string); // usersには/classes付けない
+
+        $search_results = json_decode($search_results_string, true);
+
+        if (count($search_results['results']) == 0) {
+            $result_user = 'あなたは誰ですか？'."/n";
+            $result_user .= 'LINE id:'.$line_id."/n";
+        } else {
+            $user_info = $search_results['results'][0];
+            $selected_user = $user_info['userNameKanji'];
+            $result_user =  $selected_user.'さん';
+        }
+        return $result_user ;
+    }
