@@ -38,7 +38,13 @@ foreach ($client->parseEvents() as $event) {
                         )
                     ));
                     break;
-                default:
+                case 'location':
+                    $client->replyMessage(array(
+                        'replyToken' => $event['replyToken'],
+                        'messages' => "あなたの居場所はそこですね"
+                        ));
+                    break;
+                    default:
                     error_log("Unsupporeted message type: " . $message['type']);
                     break;
             }
