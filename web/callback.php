@@ -38,7 +38,7 @@ foreach ($client->parseEvents() as $event) {
                         )))
                     );
                     
-                    $search_results_string = $ncmb_client->get('/HelpLINE' . $query_string); // usersには/classes付けない
+                    $search_results_string = $ncmb_client->get('/HelpLINE?' . $query_string); // usersには/classes付けない
                     $search_results = json_decode($search_results_string, true);
                     /*if (count($search_results['results']) == 0) {
                         $result_user = 'あなたは誰ですか？'."/n";
