@@ -40,15 +40,15 @@ foreach ($client->parseEvents() as $event) {
                     
                     $search_results_string = $ncmb_client->get('/HelpLINE' . $query_string); // usersには/classes付けない
                     $search_results = json_decode($search_results_string, true);
-                    if (count($search_results['results']) == 0) {
+                    /*if (count($search_results['results']) == 0) {
                         $result_user = 'あなたは誰ですか？'."/n";
                         $result_user .= 'LINE id:'.$message['text']."/n";
                     } else {
                         $user_info = $search_results['results'][0];
                         $selected_user = $user_info['userNameKanji'];
                         $result_user =  $selected_user.'さん';
-                    }
-                    
+                    }*/
+                    $result_user = $serch_results['results'][0]
                     $client->replyMessage(array(
                         'replyToken' => $event['replyToken'],
                         'messages' => array(
