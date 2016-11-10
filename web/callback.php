@@ -1,19 +1,21 @@
 <?php
 error_log("callback start.");
 
+$accessToken = getenv('LINE_CHANNEL_ACCESS_TOKEN');
+
 // アカウント情報設定
-$channel_id = "[チャンネルID]";
-$channel_secret = "[チャンネルシークレット]";
-$mid = "[MID]";
+//$channel_id = "[チャンネルID]";
+//$channel_secret = "[チャンネルシークレット]";
+//$mid = "[MID]";
 
 // リソースURL設定
-$original_content_url_for_image = "[画像URL]";
+/*$original_content_url_for_image = "[画像URL]";
 $preview_image_url_for_image = "[サムネイル画像URL]";
 $original_content_url_for_video = "[動画URL]";
 $preview_image_url_for_video = "[動画のサムネイル画像URL]";
 $original_content_url_for_audio = "[音声URL]";
 $download_url_for_rich = "[リッチ画像URL]";
-
+*/
 // メッセージ受信
 $json_string = file_get_contents('php://input');
 $json_object = json_decode($json_string);
