@@ -34,7 +34,7 @@ foreach ($client->parseEvents() as $event) {
                 case 'text':
                     $query_string = http_build_query(
                         array('where' => json_encode(array(
-                            'lineID' => $line_id ,
+                            'lineID' => $message['text'] ,
                         )))
                     );
                     
@@ -42,7 +42,7 @@ foreach ($client->parseEvents() as $event) {
                     $search_results = json_decode($search_results_string, true);
                     if (count($search_results['results']) == 0) {
                         $result_user = 'あなたは誰ですか？'."/n";
-                        $result_user .= 'LINE id:'.$line_id."/n";
+                        $result_user .= 'LINE id:'.$message['text']."/n";
                     } else {
                         $user_info = $search_results['results'][0];
                         $selected_user = $user_info['userNameKanji'];
