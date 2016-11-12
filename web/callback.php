@@ -28,7 +28,7 @@ $opts = array(
     )
 );
 $context = stream_context_create($opts);
-$contents = file_get_contents('https://' . $sub_domain . '.cybozu.com/k/v1/records.json?app=3', false, $context);
+$contents = file_get_contents('https://' . $sub_domain . '.cybozu.com/k/v1/record.json?app=3&id=1', false, $context);
 if (!$contents) {
     die('Error');
     //echo('Error');
