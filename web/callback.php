@@ -15,8 +15,31 @@
  * License for the specific language governing permissions and limitations
  * under the License.
  */
+header( "Content-Type: text/html; Charset=utf-8" );
+$user_id = 'Administrator';
+$password = 'fic2116';
+$sub_domain = 'k58kx';
+// 送信ヘッダーを作る
+$opts = array(
+    'http' => array(
+        'method' => 'GET',
+        'header' => 'X-Cybozu-API-Token:'. 'Z91Ore3G35l0Mjq1B0FH7VqcOtElVgebJDxfv02w' .'\r\n'
+        
+    )
+);
+$context = stream_context_create($opts);
+$contents = file_get_contents('https://' . $sub_domain . '.cybozu.com/k/v1/records.json?app=3', false, $context);
+if (!$contents) {
+    die('Error');
+    //echo('Error');
+}
+
+
+
 
 require_once('./LINEBotTiny.php');
+
+
 
 $channelAccessToken = 'KR5/LV6k4zm8mZpaw6U1fM8Isx6U+MzkgIH0EuMdYvlr8bAD2UK8uQ0aS5Q/Kn6OTgw8vxRXsYN4D9Hu0eT61tbDJdt/T7wGwY5VVLajSijR6F9X5yHT1GmDqc5HpNp57Bof/IDvzSDKj1WUmf5BCAdB04t89/1O/w1cDnyilFU=';
 $channelSecret = '04106210be1640325f6f8b23e03a4506';
@@ -33,7 +56,7 @@ foreach ($client->parseEvents() as $event) {
                         'messages' => array(
                             array(
                                 'type' => 'text',
-                                'text' => $message['text']
+                                'text' => json_decode($contents)['record_id'] //$message['text']
                             )
                         )
                     ));
