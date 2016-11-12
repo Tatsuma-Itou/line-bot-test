@@ -23,12 +23,12 @@ $sub_domain = 'k58kx';
 $opts = array(
     'http' => array(
         'method' => 'GET',
-        'header' => 'X-Cybozu-API-Token:'. 'Z91Ore3G35l0Mjq1B0FH7VqcOtElVgebJDxfv02w' .'\r\n'
-        
+        'header' => 'X-Cybozu-Authorization:' . base64_encode($user_id . ':' . $password) . '\r\n'
+        //'header' => 'X-Cybozu-API-Token:'. 'Z91Ore3G35l0Mjq1B0FH7VqcOtElVgebJDxfv02w' .'\r\n'
     )
 );
 $context = stream_context_create($opts);
-$contents = file_get_contents('https://' . $sub_domain . '.cybozu.com/k/v1/record.json?app=3&id=1', false, $context);
+$contents = file_get_contents('https://' . $sub_domain . '.cybozu.com/k/v1/record.json?app=8&id=1', false, $context);
 if (!$contents) {
     die('Error');
     //echo('Error');
@@ -56,7 +56,7 @@ foreach ($client->parseEvents() as $event) {
                         'messages' => array(
                             array(
                                 'type' => 'text',
-                                'text' => json_decode($contents)['record']['record_id'] //$message['text']
+                                'text' => json_decode($contents)['record']['$id'] //$message['text']
                             )
                         )
                     ));
