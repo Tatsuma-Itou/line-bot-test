@@ -22,9 +22,9 @@ include_once('./ncmb-client.php');
 $channelAccessToken = 'KR5/LV6k4zm8mZpaw6U1fM8Isx6U+MzkgIH0EuMdYvlr8bAD2UK8uQ0aS5Q/Kn6OTgw8vxRXsYN4D9Hu0eT61tbDJdt/T7wGwY5VVLajSijR6F9X5yHT1GmDqc5HpNp57Bof/IDvzSDKj1WUmf5BCAdB04t89/1O/w1cDnyilFU=';
 $channelSecret = '04106210be1640325f6f8b23e03a4506';
 
-$client = new LINEBotTiny($channelAccessToken, $channelSecret);
+/*$client = new LINEBotTiny($channelAccessToken, $channelSecret);
 $ncmb_client = new NCMBClient("f32e333ff28afabef1915e457c432bc7271180a4d5f0645f3775643543f32d40","097090d9da0e0e3434948709a8732a594ca5567549bc4870af8d18ba8dfe62f9");
-$result_user = null;
+$result_user = null;*/
 
 foreach ($client->parseEvents() as $event) {
     switch ($event['type']) {
@@ -37,7 +37,7 @@ foreach ($client->parseEvents() as $event) {
                             'lineID' => $message['text'] ,
                         )))
                     );
-                    
+                    /*
                     $search_results_string = $ncmb_client->get('/user?' . $query_string); // usersには/classes付けない
                     $search_results = json_decode($search_results_string, true);
                     /*if (count($search_results['results']) == 0) {
@@ -48,7 +48,7 @@ foreach ($client->parseEvents() as $event) {
                         $selected_user = $user_info['userNameKanji'];
                         $result_user =  $selected_user.'さん';
                     }*/
-                    $result_user = $serch_results['results'][0]
+                    //$result_user = $serch_results['results'][0]
                     $client->replyMessage(array(
                         'replyToken' => $event['replyToken'],
                         'messages' => array(
