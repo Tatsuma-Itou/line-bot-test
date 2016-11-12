@@ -56,7 +56,7 @@ foreach ($client->parseEvents() as $event) {
                         'messages' => array(
                             array(
                                 'type' => 'text',
-                                'text' => json_decode($contents)['record_id'] //$message['text']
+                                'text' => $message['text'] //json_decode($contents)['record_id'] //
                             )
                         )
                     ));
