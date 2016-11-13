@@ -26,6 +26,15 @@ $client = new LINEBotTiny($channelAccessToken, $channelSecret);
 /*$ncmb_client = new NCMBClient("f32e333ff28afabef1915e457c432bc7271180a4d5f0645f3775643543f32d40","097090d9da0e0e3434948709a8732a594ca5567549bc4870af8d18ba8dfe62f9");
 $result_user = null;*/
 
+// メッセージ受信
+$json_string = file_get_contents('php://input');
+$json_object = json_decode($json_string);
+$content = $json_object->result{0}->content;
+$text = $content->text;
+$from = $content->from;
+$message_id = $content->id;
+$content_type = $content->contentType;
+
 foreach ($client->parseEvents() as $event) {
     switch ($event['type']) {
         case 'message':
@@ -33,11 +42,11 @@ foreach ($client->parseEvents() as $event) {
             switch ($message['type']) {
                 case 'text':
                     $client->replyMessage(array(
-                        'to' => $event->from //'replyToken' => $event['replyToken'],
+                        'replyToken' => $event['replyToken'],
                         'messages' => array(
                             array(
                                 'type' => 'text',
-                                'text' => $message['text'] //$result_user
+                                'text' => $from//$message['text'] //$result_user
                             )
                         )
                     ));
